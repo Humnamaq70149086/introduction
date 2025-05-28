@@ -1,0 +1,15 @@
+x_values = [1.7,1.8,1.9, 2.0, 2.1, 2.2, 2.3]
+y_values = [5.474,6.050, 6.686, 7.389, 8.166, 9.025, 9.974]
+
+
+n = len(x_values) 
+forward_diff = [x_values.copy()] 
+# Calculate differences row by row 
+for i in range(1, n): 
+    row = [] 
+    for j in range(n - i): 
+        row.append(forward_diff[i-1][j+1] - forward_diff[i-1][j]) 
+    forward_diff.append(row) 
+# Display the forward differences table 
+for row in forward_diff: 
+    print(row)

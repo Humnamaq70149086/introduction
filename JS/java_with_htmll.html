@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS List</title>
+</head>
+<body>
+    <h1>To-do List</h1>
+    <label for="todoInput">Enter To-Do</label>
+    <input type="text" id="todoInput" placeholder="Enter a new To-Do">
+    <label for="todoDate">Enter Date</label>
+    <input type="date" id="Date">
+    <button onclick="addtodo()">Add To-Do</button>
+
+    <ul id="todoList"></ul> 
+
+    <script>
+        let todos = ["Get Groceries", "Go Shopping", "Get Coffee"];
+
+        function addtodo() {
+            let newTodo = document.getElementById("todoInput").value;
+            {
+                todos.push(newTodo);
+                render();
+            }
+        }
+
+        function deleteTodo(index) {
+            todos.splice(index, 1); 
+            render();
+        }
+
+        function render() {
+            const list = document.getElementById("todoList");
+            list.innerHTML = ""; 
+
+            todos.forEach(function(todoElement, index) {
+                let listItem = document.createElement("li");
+
+                let span = document.createElement("span");
+                span.innerText = todoElement;
+
+                let deleteButton = document.createElement("button");
+                deleteButton.innerText = "Delete";
+                deleteButton.onclick = function () {
+                    deleteTodo(index);
+                };
+
+                listItem.appendChild(span);
+                listItem.appendChild(deleteButton);
+                list.appendChild(listItem);
+            });
+        }
+
+       render();
+    </script>
+</body>
+</html>
+
